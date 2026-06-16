@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sim-template-cli"
+version = "0.1.0"
+description = "CLI for managing and cloning personal git template repositories"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "gitpython",
+    "rich",
+    "toml",
+    "requests",
+]
+
+[project.scripts]
+mct = "mct.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-mock"]
+docs = ["sphinx", "furo"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
