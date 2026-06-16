@@ -243,6 +243,7 @@ found (closest to the current directory) is the one used.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">template_site_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://github.com&quot;</span>
 <span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;jyurkiw&quot;</span>
 <span class="n">templates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-template&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;another-template&quot;</span><span class="p">]</span>
+<span class="n">default_template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-template&quot;</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -252,6 +253,12 @@ likely compatible — GitLab).</p>
 <dt><code class="docutils literal notranslate"><span class="pre">username</span></code></dt><dd><p>Your username on that hosting site.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">templates</span></code></dt><dd><p>The list of template repository names you maintain.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default_template</span></code></dt><dd><p>The template used by <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">new</span></code> when <code class="docutils literal notranslate"><span class="pre">--template</span></code> is omitted. Set
+automatically to the first template passed to <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">init</span></code>, and
+updatable afterward with <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">set</span> <span class="pre">default</span> <span class="pre">&lt;template_name&gt;</span></code>. Not
+present if no templates were given at init time and none has been set
+since.</p>
 </dd>
 </dl>
 <p>Repository addresses are assembled as:</p>

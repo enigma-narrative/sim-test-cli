@@ -240,6 +240,17 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mct<span class="w"> </span>init<span class="w"> </span>--username<span class="w"> </span>jyurkiw<span class="w"> </span><span class="o">[</span>--template_site_path<span class="w"> </span>https://github.com<span class="o">]</span><span class="w"> </span><span class="o">[</span>template<span class="w"> </span>...<span class="o">]</span>
 </pre></div>
 </div>
+<p>The first template name given (if any) is automatically set as the
+<code class="docutils literal notranslate"><span class="pre">default_template</span></code>.</p>
+</section>
+<section id="mct-set-default">
+<h2>mct set default<a class="headerlink" href="#mct-set-default" title="Link to this heading">¶</a></h2>
+<p>Set the default template used by <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">new</span></code> when <code class="docutils literal notranslate"><span class="pre">--template</span></code> is
+omitted. The given name must already be in the <code class="docutils literal notranslate"><span class="pre">templates</span></code> list — an
+unknown name is rejected and <code class="docutils literal notranslate"><span class="pre">.mctrc</span></code> is left unchanged.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mct<span class="w"> </span><span class="nb">set</span><span class="w"> </span>default<span class="w"> </span>my-template
+</pre></div>
+</div>
 </section>
 <section id="mct-ls">
 <h2>mct ls<a class="headerlink" href="#mct-ls" title="Link to this heading">¶</a></h2>
@@ -278,6 +289,8 @@ remote at the new project’s (not-necessarily-yet-existing) repository URL.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mct<span class="w"> </span>new<span class="w"> </span>--template<span class="w"> </span>my-template<span class="w"> </span>my-new-project
 </pre></div>
 </div>
+<p>If <code class="docutils literal notranslate"><span class="pre">--template</span></code> is omitted, the <code class="docutils literal notranslate"><span class="pre">default_template</span></code> from <code class="docutils literal notranslate"><span class="pre">.mctrc</span></code> is
+used instead. If neither is available, <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">new</span></code> exits with an error.</p>
 <p>Before cloning, <code class="docutils literal notranslate"><span class="pre">mct</span> <span class="pre">new</span></code>:</p>
 <ol class="arabic simple">
 <li><p>Confirms the git hosting site is reachable.</p></li>
@@ -341,6 +354,7 @@ values from the discovered <code class="docutils literal notranslate"><span clas
             <ul>
 <li><a class="reference internal" href="#">Usage</a><ul>
 <li><a class="reference internal" href="#mct-init">mct init</a></li>
+<li><a class="reference internal" href="#mct-set-default">mct set default</a></li>
 <li><a class="reference internal" href="#mct-ls">mct ls</a></li>
 <li><a class="reference internal" href="#mct-add">mct add</a></li>
 <li><a class="reference internal" href="#mct-rm">mct rm</a></li>
