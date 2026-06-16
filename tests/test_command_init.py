@@ -21,7 +21,17 @@ def test_init_creates_rc_file(tmp_path: Path, monkeypatch) -> None:
         "template_site_path": config.DEFAULT_TEMPLATE_SITE_PATH,
         "username": "jyurkiw",
         "templates": ["a", "b"],
+        "default_template": "a",
     }
+
+
+def test_init_without_templates_sets_no_default(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    init.run(make_args(templates=[]))
+
+    rc_path = tmp_path / config.MCTRC_FILENAME
+    data = config.load(rc_path)
+    assert "default_template" not in data
 
 
 def test_init_aborts_on_no_confirm_when_exists(tmp_path: Path, monkeypatch) -> None:

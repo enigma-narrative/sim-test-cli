@@ -14,6 +14,7 @@ Schema
    template_site_path = "https://github.com"
    username = "jyurkiw"
    templates = ["my-template", "another-template"]
+   default_template = "my-template"
 
 ``template_site_path``
    The base URL of the git hosting site (GitHub, Gitea, and — untested but
@@ -24,6 +25,13 @@ Schema
 
 ``templates``
    The list of template repository names you maintain.
+
+``default_template``
+   The template used by ``mct new`` when ``--template`` is omitted. Set
+   automatically to the first template passed to ``mct init``, and
+   updatable afterward with ``mct set default <template_name>``. Not
+   present if no templates were given at init time and none has been set
+   since.
 
 Repository addresses are assembled as::
 

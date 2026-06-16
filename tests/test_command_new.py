@@ -50,6 +50,47 @@ def test_new_aborts_when_dest_exists(tmp_path: Path, monkeypatch) -> None:
         assert exc.code == 1
 
 
+def test_new_aborts_when_no_template_and_no_default(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    config.save(tmp_path / config.MCTRC_FILENAME, {"template_site_path": "https://example.com", "username": "u", "templates": []})
+
+    try:
+        new.run(make_args(template=None))
+        assert False, "expected SystemExit"
+    except SystemExit as exc:
+        assert exc.code == 1
+
+
+def test_new_uses_default_template_when_omitted(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    config.save(
+        tmp_path / config.MCTRC_FILENAME,
+        {"template_site_path": "https://example.com", "username": "u", "templates": ["tmpl"], "default_template": "tmpl"},
+    )
+    monkeypatch.setattr(new.git_ops, "server_reachable", lambda url: True)
+
+    seen_urls = []
+
+    def fake_remote_repo_exists(url):
+        seen_urls.append(url)
+        return True
+
+    monkeypatch.setattr(new.git_ops, "remote_repo_exists", fake_remote_repo_exists)
+
+    class FakeRepo:
+        class remotes:
+            class origin:
+                @classmethod
+                def set_url(cls, url):
+                    pass
+
+    monkeypatch.setattr(new.git_ops, "clone", lambda url, dest: FakeRepo())
+
+    new.run(make_args(template=None))
+
+    assert seen_urls[0] == "https://example.com/u/tmpl.git"
+
+
 def test_new_clones_and_reports_existing_remote(tmp_path: Path, monkeypatch, capsys) -> None:
     monkeypatch.chdir(tmp_path)
     config.save(tmp_path / config.MCTRC_FILENAME, {"template_site_path": "https://example.com", "username": "u", "templates": []})

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 
-from mct.commands import add, init, ls, new, rm
+from mct.commands import add, init, ls, new, rm, set as set_cmd
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -16,6 +16,7 @@ def build_parser() -> argparse.ArgumentParser:
     add.add_parser(subparsers)
     rm.add_parser(subparsers)
     new.add_parser(subparsers)
+    set_cmd.add_parser(subparsers)
 
     return parser
 
