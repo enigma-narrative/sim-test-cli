@@ -10,6 +10,20 @@ Create an ``.mctrc`` file in the current directory.
 
    mct init --username jyurkiw [--template_site_path https://github.com] [template ...]
 
+The first template name given (if any) is automatically set as the
+``default_template``.
+
+mct set default
+----------------
+
+Set the default template used by ``mct new`` when ``--template`` is
+omitted. The given name must already be in the ``templates`` list — an
+unknown name is rejected and ``.mctrc`` is left unchanged.
+
+.. code-block:: bash
+
+   mct set default my-template
+
 mct ls
 ------
 
@@ -55,6 +69,9 @@ remote at the new project's (not-necessarily-yet-existing) repository URL.
 .. code-block:: bash
 
    mct new --template my-template my-new-project
+
+If ``--template`` is omitted, the ``default_template`` from ``.mctrc`` is
+used instead. If neither is available, ``mct new`` exits with an error.
 
 Before cloning, ``mct new``:
 

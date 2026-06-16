@@ -27,10 +27,13 @@ def run(args: argparse.Namespace) -> None:
             print("Aborted.")
             return
 
+    templates = list(args.templates)
     data = {
         "template_site_path": args.template_site_path,
         "username": args.username,
-        "templates": list(args.templates),
+        "templates": templates,
     }
+    if templates:
+        data["default_template"] = templates[0]
     config.save(rc_path, data)
     print(f"Created {rc_path}")

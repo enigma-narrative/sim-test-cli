@@ -28,6 +28,17 @@ Create an `.mctrc` file in the current directory.
 mct init --username jyurkiw [--template_site_path https://github.com] [template ...]
 ```
 
+The first template name given (if any) becomes the `default_template`.
+
+### `mct set default`
+
+Set the default template used by `mct new` when `--template` is omitted.
+The name must already be in the `templates` list.
+
+```bash
+mct set default my-template
+```
+
 ### `mct ls`
 
 List all templates recorded in the active `.mctrc`.
@@ -61,6 +72,8 @@ Clone a template under a new name and point its remote at the new project's
 mct new --template my-template my-new-project
 ```
 
+If `--template` is omitted, the `default_template` from `.mctrc` is used.
+
 ## Configuration
 
 `mct` searches the current directory and its parents (up to the drive root)
@@ -70,6 +83,7 @@ for an `.mctrc` file. The first one found is used.
 template_site_path = "https://github.com"
 username = "jyurkiw"
 templates = ["my-template", "another-template"]
+default_template = "my-template"
 ```
 
 The full address of a repository is assembled as
